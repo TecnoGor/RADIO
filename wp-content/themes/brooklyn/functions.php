@@ -12,6 +12,34 @@ define('UT_THEME_NAME', 'Brooklyn');
 define('UT_THEME_VERSION', '4.9.9.4');
 define('UT_IS_ADMIN', is_admin() );
 
+function tiktok_live_fixed_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'username' => '',
+        'width' => '100%',
+        'height' => '700'
+    ), $atts);
+    
+    if (empty($atts['username'])) {
+        return '❌ Especifica el usuario de TikTok';
+    }
+    
+    $username = sanitize_user($atts['username']);
+    
+    return '
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+        <iframe 
+            src="https://www.tiktok.com/@' . $username . '/live" 
+            width="' . esc_attr($atts['width']) . '" 
+            height="' . esc_attr($atts['height']) . '" 
+            frameborder="0" 
+            scrolling="no" 
+            allow="encrypted-media; fullscreen;"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+        </iframe>
+    </div>';
+}
+add_shortcode('tiktok_live', 'tiktok_live_fixed_shortcode');
+
 /* Unite Framework
    if you are looking for scripts enqueue or other stuff which is usually 
    located inside this file please have a look into unite-custom folder 

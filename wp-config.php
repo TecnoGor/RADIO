@@ -23,10 +23,10 @@
 define( 'DB_NAME', '1033db' );
 
 /** Database username */
-define( 'DB_USER', '1033' );
+define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', '1033db' );
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
